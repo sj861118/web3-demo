@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="./js/bignumber.min.js"></script>
+<script type="text/javascript" src="./js/crypto-js.js"></script>
+<script type="text/javascript" src="./js/utf8.js"></script>
+<script type="text/javascript" src="./js/web3-light.js"></script>
+
+<script type="text/javascript">
+     var Web3 = require('web3');
+     var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.0.21:8545"));
+
+
+    function showAccunts(){
+        web3.eth.getAccounts((err, accounts)=> {
+            if(err != null){
+                alert("accounts error!");
+                return;
+            }
+
+            if(accounts.length ==0){
+                alert(" account 0");
+                return;
+            }
+
+            callback(accounts);
+        });
+    }
+
+    function callback(accounts){
+        document.getElementById('accounts').innerHTML = accounts.join("<br />");
+    }
+
+
+</script>
+
+
+</head>
+<body>
+  <h1>account display</h1>
+  <button type="button" onClick="showAccunts();" >Show Accounts</button>
+  <br /><br />
+   <div id="accounts"> </div>
+
+</body>
+</html>
